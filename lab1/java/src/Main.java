@@ -3,7 +3,7 @@ public class Main {
         BreakThread breakThread = new BreakThread();
 
         for (int i = 1; i <= 5; i++) {
-            MainThread myThread = new MainThread(i, breakThread);
+            MainThread myThread = new MainThread(i, 2, breakThread);
             myThread.start();
         }
 

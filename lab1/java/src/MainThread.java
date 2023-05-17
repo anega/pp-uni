@@ -1,9 +1,11 @@
 public class MainThread extends Thread {
     private final int id;
+    private final int sumStep;
     private final BreakThread breakThread;
 
-    public MainThread(int id, BreakThread breakThread) {
+    public MainThread(int id, int sumStep, BreakThread breakThread) {
         this.id = id;
+        this.sumStep = sumStep;
         this.breakThread = breakThread;
     }
 
@@ -13,10 +15,10 @@ public class MainThread extends Thread {
         boolean isStop = false;
 
         do {
-            sum++;
+            sum += sumStep;
             isStop = breakThread.isCanBreak();
         } while (!isStop);
 
-        System.out.println(id + " - " + sum);
+        System.out.printf("Thread %d: sum = %s%n", id, sum);
     }
 }
