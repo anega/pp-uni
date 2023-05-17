@@ -12,13 +12,15 @@ public class MainThread extends Thread {
     @Override
     public void run() {
         long sum = 0;
+        long elementsCount = 0;
         boolean isStop = false;
 
         do {
             sum += sumStep;
             isStop = breakThread.isCanBreak();
+            elementsCount++;
         } while (!isStop);
 
-        System.out.printf("Thread %d: sum = %s%n", id, sum);
+        System.out.printf("Thread %d: sum = %s, elements count: %d%n", id, sum, elementsCount);
     }
 }
