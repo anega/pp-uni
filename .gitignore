@@ -242,3 +242,9 @@ project.lock.json
 # UWP Projects
 AppPackages/
 
+### Ada with Alire ###
+/obj/
+/bin/
+/alire/
+/config/
+
