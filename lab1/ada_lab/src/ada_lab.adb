@@ -1,35 +1,35 @@
 with Ada.Text_IO;
 
 procedure Ada_Lab is
-   can_stop : Boolean := False;
-   pragma Atomic (can_stop);
+   Can_Stop : Boolean := False;
+   pragma Atomic (Can_Stop);
 
-   task type break_thread;
-   task type main_thread;
+   task type Break_Thread;
+   task type Main_Thread;
 
-   task body break_thread is
+   task body Break_Thread is
    begin
-      delay 30.0;
-      can_stop := True;
-   end break_thread;
+      delay 3.0;
+      Can_Stop := True;
+   end Break_Thread;
 
-   task body main_thread is
-      sum : Long_Long_Integer := 0;
+   task body Main_Thread is
+      Sum : Long_Long_Integer := 0;
    begin
       loop
-         sum := sum + 1;
-         exit when can_stop;
+         Sum := Sum + 1;
+         exit when Can_Stop;
       end loop;
       delay 1.0;
 
-      Ada.Text_IO.Put_Line (sum'Img);
-   end main_thread;
+      Ada.Text_IO.Put_Line (Sum'Img);
+   end Main_Thread;
 
-   b1 : break_thread;
-   t1 : main_thread;
-   t2 : main_thread;
-   t3 : main_thread;
-   t4 : main_thread;
+   B1 : Break_Thread;
+   T1 : Main_Thread;
+   T2 : Main_Thread;
+   T3 : Main_Thread;
+   T4 : Main_Thread;
 begin
    null;
 end Ada_Lab;
