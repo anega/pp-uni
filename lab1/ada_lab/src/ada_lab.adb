@@ -5,7 +5,7 @@ procedure Ada_Lab is
    pragma Atomic (Can_Stop);
 
    task type Break_Thread;
-   task type Main_Thread (Thread_Id : Integer);
+   task type Main_Thread (Thread_Id, Sum_Step : Integer);
 
    task body Break_Thread is
    begin
@@ -17,7 +17,7 @@ procedure Ada_Lab is
       Sum : Long_Long_Integer := 0;
    begin
       loop
-         Sum := Sum + 1;
+         Sum := Sum + Long_Long_Integer (Sum_Step);
          exit when Can_Stop;
       end loop;
       delay 1.0;
@@ -26,10 +26,10 @@ procedure Ada_Lab is
    end Main_Thread;
 
    B1 : Break_Thread;
-   T1 : Main_Thread (Thread_Id => 2);
-   T2 : Main_Thread (Thread_Id => 1);
-   T3 : Main_Thread (Thread_Id => 3);
-   T4 : Main_Thread (Thread_Id => 4);
+   T1 : Main_Thread (Thread_Id => 2, Sum_Step => 1);
+   T2 : Main_Thread (Thread_Id => 1, Sum_Step => 3);
+   T3 : Main_Thread (Thread_Id => 3, Sum_Step => 6);
+   T4 : Main_Thread (Thread_Id => 4, Sum_Step => 10);
 begin
    null;
 end Ada_Lab;
