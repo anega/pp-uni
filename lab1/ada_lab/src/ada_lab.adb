@@ -5,11 +5,11 @@ procedure Ada_Lab is
    pragma Atomic (Can_Stop);
 
    task type Break_Thread;
-   task type Main_Thread;
+   task type Main_Thread (Thread_Id : Integer);
 
    task body Break_Thread is
    begin
-      delay 3.0;
+      delay 1.0;
       Can_Stop := True;
    end Break_Thread;
 
@@ -22,14 +22,14 @@ procedure Ada_Lab is
       end loop;
       delay 1.0;
 
-      Ada.Text_IO.Put_Line (Sum'Img);
+      Ada.Text_IO.Put_Line ("Thread" & Thread_Id'Img & ": sum =" & Sum'Img);
    end Main_Thread;
 
    B1 : Break_Thread;
-   T1 : Main_Thread;
-   T2 : Main_Thread;
-   T3 : Main_Thread;
-   T4 : Main_Thread;
+   T1 : Main_Thread (Thread_Id => 2);
+   T2 : Main_Thread (Thread_Id => 1);
+   T3 : Main_Thread (Thread_Id => 3);
+   T4 : Main_Thread (Thread_Id => 4);
 begin
    null;
 end Ada_Lab;
