@@ -15,4 +15,15 @@ public class ArrClass {
             arr[i] = i;
         }
     }
+
+    public int getMinValue(int startIndex, int endIndex) {
+        int minValue = arr[startIndex];
+        for (int i = startIndex; i < endIndex; i++) {
+            if (minValue > arr[i]) {
+                minValue = arr[i];
+            }
+        }
+
+        return minValue;
+    }
 }
