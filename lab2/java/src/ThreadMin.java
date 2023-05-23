@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class ThreadMin extends Thread {
     private final int startIndex;
     private final int endIndex;
@@ -11,7 +13,7 @@ public class ThreadMin extends Thread {
 
     @Override
     public void run() {
-        int min = arrClass.getMinValue(startIndex, endIndex);
-        System.out.println("Thread " + Thread.currentThread().threadId() + ": min value is " + min);
+        HashMap<String, Integer> min = arrClass.getMinValue(startIndex, endIndex);
+        arrClass.setTotalMin(min);
     }
 }
