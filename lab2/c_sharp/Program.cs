@@ -25,4 +25,19 @@ public class Program
     {
         Program program = new();
     }
+
+    private int GetPartMinIndex(int startIndex, int endIndex)
+    {
+        int minValue = _arr[startIndex];
+        int minIndex = startIndex;
+        for (int i = startIndex; i <= endIndex; i++)
+        {
+            if (minValue > _arr[i])
+            {
+                minIndex = i;
+            }
+        }
+
+        return minIndex;
+    }
 }
