@@ -18,9 +18,32 @@ procedure Ada_Lab is
          <<Continue>>
       end loop;
    end Init_Arr;
+
+   task type Find_Part_Min is
+      entry Start (Start_Index, End_Index : Integer);
+   end Find_Part_Min;
+
+   task body Find_Part_Min is
+      Start_Index, End_Index : Integer;
+      Min_Value              : Integer := Integer'Last;
+      Min_Index              : Integer;
+   begin
+      accept Start (Start_Index, End_Index : Integer) do
+         Find_Part_Min.Start_Index := Start_Index;
+         Find_Part_Min.End_Index   := End_Index;
+      end Start;
+
+      for I in Start_Index .. End_Index loop
+         if Min_Value > Arr (I) then
+            Min_Value := Arr (I);
+            Min_Index := I;
+         end if;
+      end loop;
+   end Find_Part_Min;
+
+   --  TODO: Call min calc in boundaries and set result to a global variable
+   --  TODO: Organize syncronized set to global min variable
+
 begin
    Init_Arr;
-   for I in Arr'Range loop
-      Ada.Text_IO.Put (Arr (I)'Image & ",");
-   end loop;
 end Ada_Lab;
