@@ -1,15 +1,16 @@
 with Ada.Text_IO;
 
 procedure Ada_Lab is
-   Arr_Size           : constant Integer := 9;
+   Arr_Size           : constant Integer := 10;
    Smallest_Num       : constant Integer := -1;
    Smallest_Num_Index : constant Integer := 4;
+   Thread_Num         : constant Integer := 3;
 
-   Arr : array (0 .. Arr_Size) of Integer;
+   Arr : array (1 .. Arr_Size) of Integer;
 
    procedure Init_Arr is
    begin
-      for I in 0 .. Arr_Size loop
+      for I in 1 .. Arr_Size loop
          if I = Smallest_Num_Index then
             Arr (I) := Smallest_Num;
             goto Continue;
@@ -39,9 +40,28 @@ procedure Ada_Lab is
             Min_Index := I;
          end if;
       end loop;
+
+      Ada.Text_IO.Put_Line
+        ("Min index:" & Min_Index'Image & ", Min value:" & Min_Value'Image);
    end Find_Part_Min;
 
-   --  TODO: Call min calc in boundaries and set result to a global variable
+   procedure Find_Total_Min is
+      Part_Size : constant Integer := Arr_Size / Thread_Num;
+      Threads   : array (1 .. Thread_Num) of Find_Part_Min;
+   begin
+      for I in 1 .. Thread_Num loop
+         declare
+            Start_Index : constant Integer := (I - 1) * Part_Size + 1;
+            End_Index   : Integer          := I * Part_Size;
+         begin
+            if I = Thread_Num then
+               End_Index := Arr_Size;
+            end if;
+            Threads (I).Start (Start_Index, End_Index);
+         end;
+      end loop;
+   end Find_Total_Min;
+
    --  TODO: Organize syncronized set to global min variable
 
 begin
