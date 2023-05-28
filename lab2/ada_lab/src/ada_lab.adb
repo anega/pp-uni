@@ -62,7 +62,23 @@ procedure Ada_Lab is
       end loop;
    end Find_Total_Min;
 
-   --  TODO: Organize syncronized set to global min variable
+   protected Total_Min is
+      procedure Set_Total_Min (Min_Index, Min_Value : Integer);
+
+   private
+      Total_Min_Index : Integer := 1;
+      Total_Min_Value : Integer := Integer'Last;
+   end Total_Min;
+
+   protected body Total_Min is
+      procedure Set_Total_Min (Min_Index, Min_Value : Integer) is
+      begin
+         if Total_Min_Value > Min_Index then
+            Total_Min_Index := Min_Index;
+            Total_Min_Value := Min_Value;
+         end if;
+      end Set_Total_Min;
+   end Total_Min;
 
 begin
    Init_Arr;
