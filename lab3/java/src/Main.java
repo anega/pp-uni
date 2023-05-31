@@ -6,5 +6,13 @@ public class Main {
 
     public static void main(String[] args) {
         BufferManager manager = new BufferManager(BUFFER_SIZE);
+
+        for (int i = 0; i < PROD_COUNT; i++) {
+            new Producer(manager, REQ_COUNT).start();
+        }
+
+        for (int i = 0; i < CONS_COUNT; i++) {
+            new Consumer(manager, REQ_COUNT).start();
+        }
     }
 }
