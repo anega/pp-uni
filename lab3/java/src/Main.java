@@ -5,6 +5,6 @@ public class Main {
     public static final int CONS_COUNT = 4;
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        BufferManager manager = new BufferManager(BUFFER_SIZE);
     }
 }
