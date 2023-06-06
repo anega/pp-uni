@@ -3,9 +3,9 @@
 public class Program
 {
     private const int BufferSize = 3;
-    private const int ReqCount = 10;
-    private const int ProdCount = 4;
-    private const int ConsCount = 4;
+    private const int ReqCount = 4;
+    private const int ProdCount = 1;
+    private const int ConsCount = 2;
     private readonly Semaphore _access = new(1, 1);
     private readonly Semaphore _empty = new(0, BufferSize);
     private readonly Semaphore _full = new(BufferSize, BufferSize);
@@ -39,7 +39,7 @@ public class Program
             _full.WaitOne();
             _access.WaitOne();
             _buffer.Add("Item " + i);
-            Console.WriteLine($"Item {i} was added to the buffer.");
+            Console.WriteLine($"Item {i} produced.");
             _access.Release();
             _empty.Release();
         }
