@@ -1,0 +1,9 @@
+name = "ada_lab"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["name"]
+maintainers = ["name <anegamega@gmail.com>"]
+maintainers-logins = ["anega"]
+
+executables = ["ada_lab"]
