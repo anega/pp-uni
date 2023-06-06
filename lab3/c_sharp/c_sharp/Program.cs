@@ -20,8 +20,17 @@ public class Program
     {
     }
 
-    private void Producer()
+    private void Producer(int count)
     {
+        for (int i = 0; i < count; i++)
+        {
+            _full.WaitOne();
+            _access.WaitOne();
+            _buffer.Add("Item " + i);
+            Console.WriteLine($"Item {i} was added to the buffer.");
+            _access.Release();
+            _empty.Release();
+        }
     }
 
     private void Consumer()
