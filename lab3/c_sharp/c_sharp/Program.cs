@@ -33,7 +33,17 @@ public class Program
         }
     }
 
-    private void Consumer()
+    private void Consumer(int count)
     {
+        for (int i = 0; i < count; i++)
+        {
+            _empty.WaitOne();
+            _access.WaitOne();
+            string item = _buffer.ElementAt(0);
+            _buffer.RemoveAt(0);
+            Console.WriteLine($"Item {item} consumed.");
+            _access.Release();
+            _full.Release();
+        }
     }
 }
