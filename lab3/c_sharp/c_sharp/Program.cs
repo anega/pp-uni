@@ -14,10 +14,22 @@ public class Program
     private static void Main()
     {
         Program program = new();
+        program.BufferManager(ReqCount, ProdCount, ConsCount);
     }
 
-    private void BufferManager()
+    private void BufferManager(int reqCount, int prodThreadCount, int consThreadCount)
     {
+        for (int i = 0; i < prodThreadCount; i++)
+        {
+            Thread pThread = new(() => Producer(reqCount));
+            pThread.Start();
+        }
+
+        for (int i = 0; i < consThreadCount; i++)
+        {
+            Thread cThread = new(() => Consumer(reqCount));
+            cThread.Start();
+        }
     }
 
     private void Producer(int count)
