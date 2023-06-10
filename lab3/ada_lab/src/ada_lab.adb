@@ -6,12 +6,13 @@ procedure Ada_Lab is
    package String_Lists is new Indefinite_Doubly_Linked_Lists (String);
    use String_Lists;
 
-   Req_Count      : constant Integer := 3;
-   Storage_Size   : constant Integer := 2;
-   Producer_Count : constant Integer := 3;
-   Consumer_Count : constant Integer := 3;
+   Req_Count      : constant Integer := 15;
+   Storage_Size   : constant Integer := 5;
+   Producer_Count : constant Integer := 2;
+   Consumer_Count : constant Integer := 2;
    Storage        : List;
-   Access_Storage : Counting_Semaphore (1, Default_Ceiling);
+   --  test           : Binary_Semaphore (True, Default_Ceiling);
+   Access_Storage : Binary_Semaphore (True, Default_Ceiling);
    Empty          : Counting_Semaphore (0, Default_Ceiling);
    Full           : Counting_Semaphore (Storage_Size, Default_Ceiling);
 
