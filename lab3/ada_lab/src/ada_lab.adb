@@ -6,8 +6,10 @@ procedure Ada_Lab is
    package String_Lists is new Indefinite_Doubly_Linked_Lists (String);
    use String_Lists;
 
-   Req_Count      : constant Integer := 15;
+   Req_Count      : constant Integer := 3;
    Storage_Size   : constant Integer := 2;
+   Producer_Count : constant Integer := 3;
+   Consumer_Count : constant Integer := 3;
    Storage        : List;
    Access_Storage : Counting_Semaphore (1, Default_Ceiling);
    Empty          : Counting_Semaphore (0, Default_Ceiling);
@@ -44,9 +46,16 @@ procedure Ada_Lab is
       end loop;
    end Consumer;
 
-   P : Producer;
-   C : Consumer;
+   procedure Starter (Producer_Count, Consumer_Count : Integer) is
+      type Producers_Arr is array (Integer range <>) of Producer;
+      type Consumers_Arr is array (Integer range <>) of Consumer;
+
+      Producers : Producers_Arr (1 .. Producer_Count);
+      Consumers : Consumers_Arr (1 .. Consumer_Count);
+   begin
+      null;
+   end Starter;
 
 begin
-   null;
+   Starter (Producer_Count, Consumer_Count);
 end Ada_Lab;
