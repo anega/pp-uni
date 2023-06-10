@@ -6,8 +6,8 @@ procedure Ada_Lab is
    package String_Lists is new Indefinite_Doubly_Linked_Lists (String);
    use String_Lists;
 
-   Req_Count      : constant Integer := 3;
-   Storage_Size   : constant Integer := 3;
+   Req_Count      : constant Integer := 15;
+   Storage_Size   : constant Integer := 2;
    Storage        : List;
    Access_Storage : Counting_Semaphore (1, Default_Ceiling);
    Empty          : Counting_Semaphore (0, Default_Ceiling);
@@ -30,11 +30,23 @@ procedure Ada_Lab is
 
    task body Consumer is
    begin
-      null;
+      for J in 1 .. Req_Count loop
+         Empty.Seize;
+         Access_Storage.Seize;
+         declare
+            item : constant String := First_Element (Storage);
+         begin
+            Put_Line ("Item" & item & " consumed.");
+         end;
+         Storage.Delete_First;
+         Access_Storage.Release;
+         Full.Release;
+      end loop;
    end Consumer;
 
    P : Producer;
+   C : Consumer;
 
 begin
-   Put_Line ("Init");
+   null;
 end Ada_Lab;
