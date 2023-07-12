@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         for (int i = 0; i < PHILOSOPHERS_QUANTITY; i++) {
-            forks[i] = new Fork();
+            forks[i] = new Fork(i);
         }
 
         for (int i = 0; i < PHILOSOPHERS_QUANTITY; i++) {
