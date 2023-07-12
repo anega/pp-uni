@@ -13,15 +13,22 @@ public class Philosopher extends Thread {
     public void run() {
         while (true) {
             System.out.println("Philosopher " + philosopherNumber + " is thinking.");
-            leftFork.takeFork();
-            System.out.println("Philosopher " + philosopherNumber + " took left fork.");
-            rightFork.takeFork();
-            System.out.println("Philosopher " + philosopherNumber + " took right fork.");
+            if (philosopherNumber % 2 == 0) {
+                leftFork.takeFork();
+                System.out.println("Philosopher " + philosopherNumber + " took left fork(" + leftFork.id + ").");
+                rightFork.takeFork();
+                System.out.println("Philosopher " + philosopherNumber + " took right fork(" + rightFork.id + ").");
+            } else {
+                rightFork.takeFork();
+                System.out.println("Philosopher " + philosopherNumber + " took right fork(" + rightFork.id + ").");
+                leftFork.takeFork();
+                System.out.println("Philosopher " + philosopherNumber + " took left fork(" + leftFork.id + ").");
+            }
             System.out.println("Philosopher " + philosopherNumber + " is eating.");
             leftFork.putFork();
-            System.out.println("Philosopher " + philosopherNumber + " put down left fork.");
+            System.out.println("Philosopher " + philosopherNumber + " put down left fork(" + leftFork.id + ").");
             rightFork.putFork();
-            System.out.println("Philosopher " + philosopherNumber + " put down right fork.");
+            System.out.println("Philosopher " + philosopherNumber + " put down right fork(" + rightFork.id + ").");
         }
     }
 }
