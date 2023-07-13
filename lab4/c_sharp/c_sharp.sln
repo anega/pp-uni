@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dining-philosophers", "dining-philosophers\dining-philosophers.csproj", "{C94E6D66-9513-4E50-AC7D-84441AB10BA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dining_philosophers", "dining_philosophers\dining_philosophers.csproj", "{C94E6D66-9513-4E50-AC7D-84441AB10BA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
