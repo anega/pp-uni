@@ -22,11 +22,17 @@ procedure Dinner_Philosophers is
       for I in 1 .. 10 loop
          Put_Line ("Phylosopher " & Id'Img & " thinking " & I'Img & " time");
 
-         Forks (Id_Left_Fork).Seize;
-         Put_Line ("Phylosopher " & Id'Img & " took left fork");
-
-         Forks (Id_Right_Fork).Seize;
-         Put_Line ("Phylosopher " & Id'Img & " took right fork");
+         if Id rem 2 = 0 then
+            Forks (Id_Left_Fork).Seize;
+            Put_Line ("Phylosopher " & Id'Img & " took left fork");
+            Forks (Id_Right_Fork).Seize;
+            Put_Line ("Phylosopher " & Id'Img & " took right fork");
+         else
+            Forks (Id_Right_Fork).Seize;
+            Put_Line ("Phylosopher " & Id'Img & " took right fork");
+            Forks (Id_Left_Fork).Seize;
+            Put_Line ("Phylosopher " & Id'Img & " took left fork");
+         end if;
 
          Put_Line ("Phylosopher " & Id'Img & " eating" & I'Img & " time");
 
