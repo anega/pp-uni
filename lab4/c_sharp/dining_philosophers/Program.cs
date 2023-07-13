@@ -23,10 +23,21 @@ public class DiningPhilosophers
         while (true)
         {
             Console.WriteLine($"Philosopher {philosopherId} is thinking.");
-            leftFork.WaitOne();
-            Console.WriteLine($"Philosopher {philosopherId} takes left fork.");
-            rightFork.WaitOne();
-            Console.WriteLine($"Philosopher {philosopherId} takes right fork.");
+            if (philosopherId % 2 == 0)
+            {
+                leftFork.WaitOne();
+                Console.WriteLine($"Philosopher {philosopherId} takes left fork.");
+                rightFork.WaitOne();
+                Console.WriteLine($"Philosopher {philosopherId} takes right fork.");
+            }
+            else
+            {
+                rightFork.WaitOne();
+                Console.WriteLine($"Philosopher {philosopherId} takes right fork.");
+                leftFork.WaitOne();
+                Console.WriteLine($"Philosopher {philosopherId} takes left fork.");
+            }
+
             Console.WriteLine($"Philosopher {philosopherId} is eating.");
             leftFork.Release();
             Console.WriteLine($"Philosopher {philosopherId} puts down left fork.");
